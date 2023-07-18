@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">P5M</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short"><font size="18">Sign in</font></string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="welcome_bac">Welcome\nBack!</string>
+    <string name="Username"><font size="15">Username/NIM</font></string>
+    <string name="Password"><font size="15">Password</font></string>
+    <string name="LabelUsername"><font size="15">Username/NIM<font color="#FF5656">*</font></font></string>
+    <string name="LabelPassword"><font size="15">Password<font color="#FF5656">*</font></font></string>
+</resources>

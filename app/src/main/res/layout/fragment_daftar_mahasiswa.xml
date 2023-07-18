@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/daftarmahasiswafragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.DaftarMahasiswaFragment"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/rectangle_9"
+        android:layout_width="match_parent"
+        android:layout_height="276dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rectangle_dashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_2"
+        android:layout_width="130dp"
+        android:layout_height="41dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/img_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_notif"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_baseline_notifications_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hallo_prans"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:gravity="top"
+        android:text="Hello, Eko Abdul Ghofar"
+        android:textAppearance="@style/hallo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/tanggal_dashboard"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hallo_prans" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <View
+            android:id="@+id/rectangle_4"
+            android:layout_width="320dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/rectangel_jam" />
+
+        <!-- time (1) 1 -->
+        <View
+            android:id="@+id/time_1_1"
+            android:layout_width="46dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/ic_baseline_watch_later_24" />
+
+        <TextView
+            android:id="@+id/textMasuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="33dp"
+            android:layout_toEndOf="@+id/time_1_1"
+            android:layout_toRightOf="@+id/time_1_1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Masuk"
+            android:textColor="@color/blue_polman"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textMasuk"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="-1dp"
+            android:layout_toEndOf="@+id/time_1_1"
+            android:layout_toRightOf="@+id/time_1_1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="07:15 WIB"
+            android:textColor="@color/blue_polman"
+            android:textSize="13sp" />
+
+        <View
+            android:id="@+id/time_2_2"
+            android:layout_width="46dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="174dp"
+            android:layout_marginLeft="174dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/ic_baseline_watch_later_24" />
+
+        <TextView
+            android:id="@+id/textMasuk1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="167dp"
+            android:layout_marginTop="34dp"
+            android:layout_toEndOf="@+id/time_2_2"
+            android:layout_toRightOf="@+id/time_1_1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Keluar"
+            android:textColor="@color/blue_polman"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textMasuk"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="167dp"
+            android:layout_marginTop="-1dp"
+            android:layout_toEndOf="@+id/time_2_2"
+            android:layout_toRightOf="@+id/time_1_1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="16:30 WIB"
+            android:textColor="@color/blue_polman"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewList"
+        android:layout_width="match_parent"
+        android:layout_height="469dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_9"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

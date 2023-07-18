@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">P5M</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short"><font size="18">Sign in</font></string>
+    <string name="welcome">"Welcome \!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="welcome_bac">Welcome\nBack\!</string>
+    <string name="hello">Hello, Pranspaska Yudha</string>
+    <string name="tanggal_dashboard">Senin,15 Juni 2023</string>
+    <string name="Username"><font>Username/NIM</font></string>
+    <string name="Password"><font>Password</font></string>
+    <string name="LabelUsername"><font size="15">Username/NIM<font color="#FF5656">\*</font></font></string>
+    <string name="LabelPassword"><font size="15">Password<font color="#FF5656">\*</font></font></string>
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="oopss_no_data_found">Oopss! No data found.</string>
+    <string name="search">Search</string>
+    <string name="enter_the_name">Enter the name</string>
+    <string name="select_the_role">Select The Role</string>
+    <string name="select_the_class">Select The Class</string>
+    <string name="sorry_there_are_no_results">Sorry, there are no results.</string>
+</resources>
