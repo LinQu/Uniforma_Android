@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/hallo_prans"
+        android:id="@+id/tvNamaMahasiswa"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:layout_alignParentLeft="true"
@@ -58,12 +58,12 @@
         android:text="@string/hello"
         android:textAppearance="@style/hallo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_2" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvNamaRoleMahasiswa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -74,14 +74,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hallo_prans" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNamaMahasiswa" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/tvNamaRoleMahasiswa">
 
         <View
             android:id="@+id/rectangle_4"

@@ -27,10 +27,12 @@ import id.ac.astra.polytechnic.kelompok1.p5m_new.helper.NetworkStateLiveData;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.helper.ValidationHelper;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.Karyawan;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.Pengguna;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.model.response.LoginMahasiswaResponse;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.response.LoginResponse;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.response.PenggunaResponse;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.PenggunaRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.KaryawanListViewModel;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.MahasiswaListViewModel;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.PenggunaListViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,13 +43,14 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout mTxtUsernameLayout;
     private KaryawanListViewModel mKaryawanListViewModel;
     private PenggunaListViewModel mPenggunaListViewModel;
+    private MahasiswaListViewModel mMahasiswaListViewModel;
     private Pengguna mPengguna;
 
     public LoginActivity() {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstance){
+    protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_login);
         networkStateLiveData = new NetworkStateLiveData(this);
@@ -64,76 +67,111 @@ public class LoginActivity extends AppCompatActivity {
         });
         getWindow().setEnterTransition(new Fade());
         pref = getSharedPreferences("user_pref", MODE_PRIVATE);
-        if(pref.getBoolean("isLogin",false)){
-            Intent intent = new Intent(this,MainActivity.class);
+        if (pref.getBoolean("isLogin", false)) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
         mKaryawanListViewModel = new ViewModelProvider(this).get(KaryawanListViewModel.class);
         mPenggunaListViewModel = new ViewModelProvider(this).get(PenggunaListViewModel.class);
+        mMahasiswaListViewModel = new ViewModelProvider(this).get(MahasiswaListViewModel.class);
         mTxtUsername = findViewById(R.id.inputuser);
         mTxtUsernameLayout = findViewById(R.id.LayoutUsername);
         mButtonLogin = findViewById(R.id.buttonlogin);
         mButtonLogin.setOnClickListener(v -> {
-            if(TextUtils.isEmpty(mTxtUsername.getText().toString())){
-                Toast.makeText(this,"Please enter username",Toast.LENGTH_LONG).show();
+            if (TextUtils.isEmpty(mTxtUsername.getText().toString())) {
+                Toast.makeText(this, "Please enter username", Toast.LENGTH_LONG).show();
                 return;
             }
             String usr_username = mTxtUsername.getText().toString();
 
-            if(!isConnected()){
-                FancyToast.makeText(this,"Please check your internet connection",FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
+            if (!isConnected()) {
+                FancyToast.makeText(this, "Please check your internet connection", FancyToast.LENGTH_LONG, FancyToast.WARNING, false).show();
                 return;
             }
-        if(validate(v)) {
-            ProgressDialog progressDialog = ProgressDialog.show(this, "Sign In", "Signing in...");
-            mKaryawanListViewModel.getLoginKaryawan(usr_username).observe(this, new Observer<LoginResponse>() {
-                @Override
-                public void onChanged(LoginResponse loginResponse) {
-                    if (loginResponse != null) {
-                        if (loginResponse.getStatus() == 200) {
-                            mPenggunaListViewModel.getPenggunaByNama(loginResponse.getmKaryawan().getNama()).observe(LoginActivity.this, new Observer<PenggunaResponse>() {
-                                @Override
-                                public void onChanged(PenggunaResponse penggunaResponse) {
-                                    if(penggunaResponse != null){
-                                        if(penggunaResponse.getStatus() == 200){
-                                            mPengguna = penggunaResponse.getmPengguna();
-                                            SharedPreferences.Editor editor = pref.edit();
-                                            editor.putString("kry_username", loginResponse.getmKaryawan().getUsername());
-                                            //editor.putString("kry_nama", loginResponse.getmKaryawan().getNama());
-                                            editor.putString("kry_nama", mPengguna.getNama());
-                                            editor.putString("role",mPengguna.getRole());
-                                            editor.putString("kelas",mPengguna.getKelas());
-                                            editor.putBoolean("isLogin", true);
-                                            editor.apply();
+            if (validate(v)) {
+                ProgressDialog progressDialog = ProgressDialog.show(this, "Sign In", "Signing in...");
 
-                                            FancyToast.makeText(LoginActivity.this, "Login", FancyToast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }else{
-                                            FancyToast.makeText(LoginActivity.this, "Username tidak terdaftar", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show();
+                mMahasiswaListViewModel.getLoginMahasiswa(usr_username).observe(this, new Observer<LoginMahasiswaResponse>() {
+                    @Override
+                    public void onChanged(LoginMahasiswaResponse loginMahasiswaResponse) {
+                        if (loginMahasiswaResponse != null) {
+                            if (loginMahasiswaResponse.getStatus() == 200) {
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putString("nim", loginMahasiswaResponse.getmMahasiswa().getNim());
+                                editor.putString("nama", loginMahasiswaResponse.getmMahasiswa().getNama());
+                                editor.putString("kelas", loginMahasiswaResponse.getmMahasiswa().getKelas());
+                                editor.putString("role", "Mahasiswa");
+                                editor.putBoolean("isLogin", true);
+                                editor.apply();
+
+                                FancyToast.makeText(LoginActivity.this, "Login Success", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                mKaryawanListViewModel.getLoginKaryawan(usr_username).observe(LoginActivity.this, new Observer<LoginResponse>() {
+                                    @Override
+                                    public void onChanged(LoginResponse loginResponse) {
+                                        if (loginResponse != null) {
+                                            if (loginResponse.getStatus() == 200) {
+                                                mPenggunaListViewModel.getPenggunaByNama(loginResponse.getmKaryawan().getNama()).observe(LoginActivity.this, new Observer<PenggunaResponse>() {
+                                                    @Override
+                                                    public void onChanged(PenggunaResponse penggunaResponse) {
+                                                        if (penggunaResponse != null) {
+                                                            if (penggunaResponse.getStatus() == 200) {
+                                                                mPengguna = penggunaResponse.getmPengguna();
+                                                                SharedPreferences.Editor editor = pref.edit();
+                                                                editor.putString("kry_username", loginResponse.getmKaryawan().getUsername());
+                                                                //editor.putString("kry_nama", loginResponse.getmKaryawan().getNama());
+                                                                editor.putString("kry_nama", mPengguna.getNama());
+                                                                editor.putString("role", mPengguna.getRole());
+                                                                editor.putString("kelas", mPengguna.getKelas());
+                                                                editor.putBoolean("isLogin", true);
+                                                                editor.apply();
+
+                                                                FancyToast.makeText(LoginActivity.this, "Login Success", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                                startActivity(intent);
+                                                                finish();
+                                                            } else {
+                                                                progressDialog.dismiss();
+                                                                FancyToast.makeText(LoginActivity.this, "Login Failed", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                                                            }
+                                                        } else {
+                                                            progressDialog.dismiss();
+                                                            FancyToast.makeText(LoginActivity.this, "Login Failed", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+                                                        }
+
+                                                    }
+                                                });
+                                            } else {
+                                                progressDialog.dismiss();
+                                                FancyToast.makeText(LoginActivity.this, "Login Failed", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
+                                            }
+                                        } else {
+
+                                            progressDialog.dismiss();
+                                            FancyToast.makeText(LoginActivity.this, "Login Failed", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                                         }
+
+
                                     }
-                                }
-                            });
-
-
-
+                                });
+                            }
                         } else {
-                            FancyToast.makeText(LoginActivity.this, "Username tidak ditemukan", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show();
+                            progressDialog.dismiss();
+                            FancyToast.makeText(LoginActivity.this, "Login Failed", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+
                         }
-                    } else {
-                        FancyToast.makeText(LoginActivity.this, "Username tidak ditemukan", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show();
                     }
-                    progressDialog.dismiss();
-                }
-            });
-        }
+                });
+            }
         });
-
-
     }
+
 
     public boolean validate(View v) {
         boolean emailValidation = ValidationHelper.requiredTextInputValidation(mTxtUsernameLayout);
@@ -149,5 +187,5 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
 }
+

@@ -49,13 +49,13 @@ public class DashboardFragment extends Fragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_dashboard_instruktur, container, false);
-        preferences = getActivity().getSharedPreferences("user_pref", Context.MODE_PRIVATE);
-        String name = (preferences.getString("kry_nama", ""));
-        String role = (preferences.getString("role", ""));
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View v = inflater.inflate(R.layout.fragment_dashboard_instruktur, container, false);
+            preferences = getActivity().getSharedPreferences("user_pref", Context.MODE_PRIVATE);
+            String name = (preferences.getString("kry_nama", ""));
+            String role = (preferences.getString("role", ""));
 
         mTextHelloUser = v.findViewById(R.id.hallo_user);
         mTextHelloUser.setText("Hello, " + name);
