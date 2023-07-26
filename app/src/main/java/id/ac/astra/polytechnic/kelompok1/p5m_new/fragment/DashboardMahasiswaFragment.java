@@ -1,7 +1,9 @@
 package id.ac.astra.polytechnic.kelompok1.p5m_new.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +14,14 @@ import androidx.fragment.app.Fragment;
 
 import org.w3c.dom.Text;
 
+import id.ac.astra.polytechnic.kelompok1.p5m_new.LoginActivity;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.R;
 
 public class DashboardMahasiswaFragment extends Fragment {
     SharedPreferences preferences;
     TextView txtNama;
     TextView txtRole;
+    ImageButton btnLogout;
 
     public static DashboardMahasiswaFragment newInstance() {
         DashboardMahasiswaFragment fragment = new DashboardMahasiswaFragment();
@@ -41,6 +45,18 @@ public class DashboardMahasiswaFragment extends Fragment {
         txtRole = v.findViewById(R.id.tvNamaRoleMahasiswa);
         txtNama.setText("Hello, " + name);
         txtRole.setText("Login Sebagai " + role);
+        btnLogout = v.findViewById(R.id.btnLogoutMahasiswa);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
         return v;
     }
 

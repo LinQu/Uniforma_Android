@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("nim", loginMahasiswaResponse.getmMahasiswa().getNim());
                                 editor.putString("nama", loginMahasiswaResponse.getmMahasiswa().getNama());
                                 editor.putString("kelas", loginMahasiswaResponse.getmMahasiswa().getKelas());
+                                editor.putString("urlPhoto", loginMahasiswaResponse.getmMahasiswa().getDul_pas_foto());
                                 editor.putString("role", "Mahasiswa");
                                 editor.putBoolean("isLogin", true);
                                 editor.apply();

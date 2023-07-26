@@ -17,7 +17,7 @@ public class MahasiswaListViewModel extends ViewModel {
    private MahasiswaRepository mMahasiswaRepository;
 
    public MahasiswaListViewModel() {
-       mMahasiswaRepository = MahasiswaRepository.get();
+       mMahasiswaRepository = MahasiswaRepository.  get();
    }
     public List<Mahasiswa> getMahasiswa(){
        if(mMahasiswa == null){

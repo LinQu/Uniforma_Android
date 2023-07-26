@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.Kelas;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.AbsenRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.KaryawanRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.KelasRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.MahasiswaRepository;
@@ -21,6 +22,7 @@ public class MyApplication extends Application {
         PelanggaranRepository.initialize(this);
         KelasRepository.initialize(this);
         MahasiswaRepository.initialize(this);
+        AbsenRepository.initialize(this);
 
     }
 }

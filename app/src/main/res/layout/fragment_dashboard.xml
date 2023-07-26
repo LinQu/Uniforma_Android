@@ -33,14 +33,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_notif"
+    <ImageButton
+        android:id="@+id/btnLogoutMahasiswa"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:background="@drawable/ic_baseline_notifications_24"
+        android:background="@drawable/icon_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,17 +48,20 @@
 
     <TextView
         android:id="@+id/tvNamaMahasiswa"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="28dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/poppins_extrabold"
         android:gravity="top"
         android:text="@string/hello"
-        android:textAppearance="@style/hallo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:autoSizeMaxTextSize="18sp"
+        android:autoSizeMinTextSize="14sp"
+        android:maxLines="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_2" />
 
@@ -66,13 +69,12 @@
         android:id="@+id/tvNamaRoleMahasiswa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/tanggal_dashboard"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNamaMahasiswa" />
 
@@ -131,7 +133,7 @@
             android:layout_toEndOf="@+id/time_1_1"
             android:layout_toRightOf="@+id/time_1_1"
             android:fontFamily="@font/poppins_medium"
-            android:text="07:15 WIB"
+            android:text="07:30 WIB"
             android:textColor="@color/blue_polman"
             android:textSize="13sp" />
 
@@ -267,7 +269,7 @@
             android:layout_width="106dp"
             android:layout_height="59dp"
             android:layout_marginBottom="8dp"
-
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:backgroundTint="#ffffff"
             app:cardCornerRadius="8dp"
@@ -303,7 +305,7 @@
                 android:layout_marginBottom="14dp"
                 android:gravity="center_vertical"
                 android:text="3 Hari"
-                android:textColor="#F17676"
+                android:textColor="#E2AB1E"
                 android:textSize="12sp" />
 
             <View
@@ -315,7 +317,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="45dp"
                 android:layout_marginRight="12dp"
-                android:background="@drawable/rectangle_merah" />
+                android:background="@drawable/rectangle_kuning" />
 
 
         </com.google.android.material.card.MaterialCardView>
@@ -323,6 +325,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="106dp"
             android:layout_height="59dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="5dp"
@@ -344,7 +348,7 @@
                 android:layout_marginLeft="31dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Hadir"
+                android:text="Tidak"
                 android:textColor="#A6000000"
                 android:textSize="16sp" />
 
@@ -360,7 +364,7 @@
                 android:layout_marginBottom="14dp"
                 android:gravity="center_vertical"
                 android:text="3 Hari"
-                android:textColor="#E2AB1E"
+                android:textColor="#F17676"
                 android:textSize="12sp" />
 
             <View
@@ -372,7 +376,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="45dp"
                 android:layout_marginRight="12dp"
-                android:background="@drawable/rectangle_kuning" />
+                android:background="@drawable/rectangle_merah" />
 
 
         </com.google.android.material.card.MaterialCardView>

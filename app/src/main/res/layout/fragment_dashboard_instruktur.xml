@@ -42,7 +42,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:background="@drawable/ic_baseline_notifications_24"
+        android:background="@drawable/icon_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,33 +51,35 @@
     <TextView
         android:id="@+id/hallo_user"
         android:layout_width="330dp"
-        android:layout_height="29dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_extrabold"
         android:gravity="top"
         android:text="Hello, Eko Abdul Ghofar"
-        android:textAppearance="@style/hallo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.358"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:autoSizeMaxTextSize="18sp"
+        android:autoSizeMinTextSize="14sp"
+        android:maxLines="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_2" />
+
 
     <TextView
         android:id="@+id/txtRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/tanggal_dashboard"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hallo_user" />
-
 
     <TextView
         android:id="@+id/rekap_absen"

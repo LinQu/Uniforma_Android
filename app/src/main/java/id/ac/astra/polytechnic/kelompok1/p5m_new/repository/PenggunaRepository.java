@@ -24,6 +24,7 @@ public class PenggunaRepository {
     private static final String TAG = "PenggunaRepository";
     private static PenggunaRepository INSTANCE;
     private static PenggunaDAO penggunaDAO;
+
     private Context context;
 
     private PenggunaService penggunaService;
@@ -42,6 +43,8 @@ public class PenggunaRepository {
     public static PenggunaRepository getInstance(){
         return INSTANCE;
     }
+
+
 
     public LiveData<List<Pengguna>> getAllPengguna(){
         Call<ListPenggunaResponse> call = penggunaService.getPengguna();
