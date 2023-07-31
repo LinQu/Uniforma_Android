@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_left_purple" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/tv_show_jam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:autoSizeMinTextSize="20sp"
+                android:text="8"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="JAM"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_show_jam" />
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="2dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="88dp"
+                android:background="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="209dp"
+                android:layout_height="81dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:paddingStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_edit_pelanggaran"
+                app:layout_constraintHorizontal_bias="0.706"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <!-- Title, secondary and supporting text -->
+
+
+                <TextView
+                    android:id="@+id/tv_pelanggaran_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textSize="20dp"
+                    tools:text="Seragam" />
+
+                <TextView
+                    android:id="@+id/tv_pengguna_role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12dp"
+                    tools:text="Jam Minus " />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_edit_pelanggaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_circular"
+                android:backgroundTint="@color/yellow"
+                android:contentDescription="Edit Pelanggaran Aplikasi"
+                android:padding="10dp"
+                android:src="@drawable/baseline_edit_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.489"
+                app:tint="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

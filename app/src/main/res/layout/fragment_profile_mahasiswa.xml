@@ -59,8 +59,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_dashboard_name"
             tools:text="0320210059" />
+        <ImageButton
+            android:id="@+id/btnLogoutMahasiswa"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/icon_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView7"
             android:layout_width="364dp"
             android:layout_height="269dp"
             android:layout_marginTop="24dp"
@@ -79,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Grafik Nilai"
+                android:text="Grafik Absen"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -97,5 +110,28 @@
         </com.google.android.material.card.MaterialCardView>
 
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="364dp"
+            android:layout_height="269dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView7"
+            app:layout_constraintVertical_bias="0.0">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Grafik Pelanggaran"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

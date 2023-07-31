@@ -248,7 +248,7 @@ public class PenggunaFragment extends Fragment {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };
-    private class PenggunaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private class PenggunaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mPenggunaNama;
         private TextView mPenggunaRole;

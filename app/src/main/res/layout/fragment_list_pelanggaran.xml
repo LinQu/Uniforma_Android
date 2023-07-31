@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/rectangle_9"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rectangle_dashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_9">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textTidakHadir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:text="Pelanggaran"
+                    android:textColor="#A6000000"
+                    android:textSize="30sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.503"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.074" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Daftar Detail Pelanggaran"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textTidakHadir" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_pelanggaran_search"
+        style="@style/MyDenseOutlined"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="@string/search"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        app:endIconDrawable="@drawable/ic_baseline_search_24"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_pelanggaran_search"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <include
+        android:id="@+id/layout_empty_data"
+        layout="@layout/layout_empty_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="180dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/til_pelanggaran_search"
+        tools:layout_editor_absoluteX="-30dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pelanggaran"
+        android:layout_width="match_parent"
+        android:layout_height="501dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_pelanggaran_search" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_pelanggaran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="68dp"
+        android:contentDescription="Add Pelanggaran"
+        app:backgroundTint="@color/blue_polman"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        app:tint="@color/white"
+        tools:ignore="RtlHardcoded" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

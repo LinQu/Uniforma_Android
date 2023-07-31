@@ -12,6 +12,7 @@ import java.util.List;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.api.ApiUtils;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.dao.PenggunaDAO;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.helper.CrudType;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.model.Pelanggaran;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.Pengguna;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.response.ListPenggunaResponse;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.response.PenggunaResponse;
@@ -43,6 +44,7 @@ public class PenggunaRepository {
     public static PenggunaRepository getInstance(){
         return INSTANCE;
     }
+
 
 
 

@@ -78,11 +78,11 @@ public class DashboardFragment extends Fragment {
         mCardPelanggaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                PelanggaranFragment pelanggaranFragment = new PelanggaranFragment();
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, pelanggaranFragment, "findThisFragment")
-//                        .addToBackStack(null)
-//                        .commit();
+                PelanggaranFragment pelanggaranFragment = new PelanggaranFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, pelanggaranFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
                 Toast.makeText(getActivity(), "Fitur Crud Pelanggaran belum tersedia", Toast.LENGTH_SHORT).show();
             }
         });

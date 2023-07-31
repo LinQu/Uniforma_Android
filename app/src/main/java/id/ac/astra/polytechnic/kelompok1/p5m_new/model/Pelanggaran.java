@@ -19,12 +19,25 @@ public class Pelanggaran {
     @Expose
     private String jamMinus;
 
-    public Pelanggaran(Integer id, String nama, String jamMinus) {
+    @SerializedName("status")
+    @Expose
+    private Integer status;
+
+    public Pelanggaran(Integer id, String nama, String jamMinus, Integer status) {
         this.id = id;
         this.nama = nama;
         this.jamMinus = jamMinus;
+        this.status = status;
     }
     public Pelanggaran() {
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getId() {
@@ -51,13 +64,13 @@ public class Pelanggaran {
         this.jamMinus = jamMinus;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return "Data{" +
-                "id = '"+id+'\''+
-                ",nama= '"+nama+'\''+
-                ",jam_minus= '"+jamMinus+'\''+
-                "}";
+        return "Pelanggaran{" +
+                "id=" + id +
+                ", nama='" + nama + '\'' +
+                ", jamMinus='" + jamMinus + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

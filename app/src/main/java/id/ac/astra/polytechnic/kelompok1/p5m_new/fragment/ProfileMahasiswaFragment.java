@@ -18,6 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -44,6 +48,7 @@ public class ProfileMahasiswaFragment extends Fragment {
     TextView tvNama,tvNIM;
     String nim;
     String nama;
+    String urlPhoto;
     LineChart lineChartAbsen;
     List<KehadiranPerBulanDTO> mListKehadiranPerBulanDTO;
 
@@ -65,12 +70,19 @@ public class ProfileMahasiswaFragment extends Fragment {
         preferences = getActivity().getSharedPreferences("user_pref", Context.MODE_PRIVATE);
         nim = preferences.getString("nim", "");
         nama = preferences.getString("nama", "");
+        urlPhoto = preferences.getString("urlPhoto", "");
         lineChartAbsen = v.findViewById(R.id.lineChartAbsen);
         ivProfile = v.findViewById(R.id.imgProfileMhs);
         tvNama = v.findViewById(R.id.tv_dashboard_name);
         tvNIM = v.findViewById(R.id.tv_profile_nim);
         tvNIM.setText(nim);
         tvNama.setText(nama);
+        Glide.with(this)
+                .load("https://sia.polytechnic.astra.ac.id/Files/"+urlPhoto)
+                .transform(new CenterCrop(),new RoundedCorners(190))
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(ivProfile);
+
         mAbsenListViewModel.getPersentaseKehadiran(nim).observe(getViewLifecycleOwner(), new Observer<List<KehadiranPerBulanDTO>>() {
             @Override
             public void onChanged(List<KehadiranPerBulanDTO> kehadiranPerBulanDTOS) {
