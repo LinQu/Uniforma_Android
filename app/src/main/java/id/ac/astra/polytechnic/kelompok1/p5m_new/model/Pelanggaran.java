@@ -22,12 +22,31 @@ public class Pelanggaran {
     @SerializedName("status")
     @Expose
     private Integer status;
+    private String nim;
 
-    public Pelanggaran(Integer id, String nama, String jamMinus, Integer status) {
+    private boolean isSelected;
+
+    public String getNim() {
+        return nim;
+    }
+
+    public void setNim(String nim) {
+        this.nim = nim;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public Pelanggaran(Integer id, String nama, String jamMinus, boolean check) {
         this.id = id;
         this.nama = nama;
         this.jamMinus = jamMinus;
-        this.status = status;
+        this.isSelected = check;
     }
     public Pelanggaran() {
     }
@@ -71,6 +90,8 @@ public class Pelanggaran {
                 ", nama='" + nama + '\'' +
                 ", jamMinus='" + jamMinus + '\'' +
                 ", status=" + status +
+                ", nim='" + nim + '\'' +
+                ", isSelected=" + isSelected +
                 '}';
     }
 }

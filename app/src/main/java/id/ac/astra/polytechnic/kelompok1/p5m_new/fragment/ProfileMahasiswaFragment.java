@@ -1,5 +1,6 @@
 package id.ac.astra.polytechnic.kelompok1.p5m_new.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -22,11 +23,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -39,10 +44,12 @@ import java.util.List;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.R;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.KehadiranPerBulanDTO;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.AbsenListViewModel;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.P5mListViewModel;
 
 public class ProfileMahasiswaFragment extends Fragment {
     private static final String TAG = "ProfileMahasiswaFragment";
     private AbsenListViewModel mAbsenListViewModel;
+    private P5mListViewModel mP5mListViewModel;
     SharedPreferences preferences;
     ImageView ivProfile;
     TextView tvNama,tvNIM;
@@ -50,6 +57,7 @@ public class ProfileMahasiswaFragment extends Fragment {
     String nama;
     String urlPhoto;
     LineChart lineChartAbsen;
+    BarChart lineChartPelanggaran;
     List<KehadiranPerBulanDTO> mListKehadiranPerBulanDTO;
 
     public ProfileMahasiswaFragment() {
@@ -61,6 +69,7 @@ public class ProfileMahasiswaFragment extends Fragment {
         setHasOptionsMenu(true);
 
         mAbsenListViewModel = new ViewModelProvider(this).get(AbsenListViewModel.class);
+        mP5mListViewModel = new ViewModelProvider(this).get(P5mListViewModel.class);
     }
 
     @Nullable
@@ -72,7 +81,8 @@ public class ProfileMahasiswaFragment extends Fragment {
         nama = preferences.getString("nama", "");
         urlPhoto = preferences.getString("urlPhoto", "");
         lineChartAbsen = v.findViewById(R.id.lineChartAbsen);
-        ivProfile = v.findViewById(R.id.imgProfileMhs);
+        lineChartPelanggaran = v.findViewById(R.id.linechartPelanggaran);
+                ivProfile = v.findViewById(R.id.imgProfileMhs);
         tvNama = v.findViewById(R.id.tv_dashboard_name);
         tvNIM = v.findViewById(R.id.tv_profile_nim);
         tvNIM.setText(nim);
@@ -84,6 +94,7 @@ public class ProfileMahasiswaFragment extends Fragment {
                 .into(ivProfile);
 
         mAbsenListViewModel.getPersentaseKehadiran(nim).observe(getViewLifecycleOwner(), new Observer<List<KehadiranPerBulanDTO>>() {
+            @SuppressLint("LongLogTag")
             @Override
             public void onChanged(List<KehadiranPerBulanDTO> kehadiranPerBulanDTOS) {
                 mListKehadiranPerBulanDTO = kehadiranPerBulanDTOS;
@@ -91,7 +102,55 @@ public class ProfileMahasiswaFragment extends Fragment {
                 setupLineChart(mListKehadiranPerBulanDTO);
             }
         });
+        mP5mListViewModel.findPelanggaranOccurrencesByNim(nim,2023,7).observe(getViewLifecycleOwner(), new Observer<List<Object[]>>() {
+            @Override
+            public void onChanged(List<Object[]> objects) {
+                setupLineChartPelanggaran(objects);
+            }
+        });
         return v;
+    }
+
+    private void setupLineChartPelanggaran(List<Object[]> data){
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            // Convert Double to float using the floatValue() method
+            float value = ((Double) data.get(i)[2]).floatValue();
+            entries.add(new BarEntry(i, value));
+        }
+
+        BarDataSet dataSet = new BarDataSet(entries, "Persentase Pelanggaran");
+        dataSet.setColor(Color.BLUE);
+
+        BarData barData = new BarData(dataSet);
+        barData.setBarWidth(0.5f); // Set the width of the bars
+
+
+        lineChartPelanggaran.setData(barData);
+        lineChartPelanggaran.setDragXEnabled(true);
+        lineChartPelanggaran.setVisibleXRangeMaximum(5);
+
+        XAxis xAxis = lineChartPelanggaran.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(getLabelPelanggaran(data)));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setLabelCount(data.size() + 1);
+
+        YAxis leftAxis = lineChartPelanggaran.getAxisLeft();
+        leftAxis.setAxisMinimum(0f);
+
+        YAxis rightAxis = lineChartPelanggaran.getAxisRight();
+        rightAxis.setEnabled(false);
+
+        Description description = new Description();
+        description.setText("Data Kehadiran Per Bulan");
+        lineChartPelanggaran.setDescription(description);
+
+        Legend legend = lineChartPelanggaran.getLegend();
+        legend.setEnabled(false);
+
+        lineChartPelanggaran.invalidate();
     }
 
     private void setupLineChart(List<KehadiranPerBulanDTO> data){
@@ -138,6 +197,16 @@ public class ProfileMahasiswaFragment extends Fragment {
 
         lineChartAbsen.invalidate();
 
+    }
+
+    private String[] getLabelPelanggaran(List<Object[]> dataItems){
+        String[] labels = new String[dataItems.size()];
+        for (int i = 0; i < dataItems.size(); i++) {
+            Object[] rowData = dataItems.get(i);
+            String namaPelanggaran = (String) rowData[1]; // The violation name is at index 1
+            labels[i] = namaPelanggaran;
+        }
+        return labels;
     }
 
     private List<String> getLabels(List<KehadiranPerBulanDTO> dataItems) {

@@ -36,11 +36,11 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/nextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/transparent_background"
-            android:id="@+id/nextButton"
             android:text="@string/forward"
             android:textColor="@color/blue"
             android:textSize="20sp"
@@ -120,7 +120,6 @@
 
 
     </LinearLayout>
-
 
 
     <LinearLayout

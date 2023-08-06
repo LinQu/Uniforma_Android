@@ -27,7 +27,7 @@ public class PelanggaranRepository {
     private PelanggaranService p5mService;
 
     private PelanggaranRepository(Context context) {
-        p5mService = ApiUtils.getP5mService();
+        p5mService = ApiUtils.getPelanggaranService();
     }
 
     public static void initialize(Context context) {
@@ -98,6 +98,7 @@ public class PelanggaranRepository {
                 pelanggaranResponseMutableLiveData.setValue(pelanggaranResponse);
                 if (pelanggaranResponse.getStatus() == 200){
                     mPelanggaranDao.savePelanggaran(pelanggaranResponse.getmPelanggaran());
+
                 }
             }
 

@@ -8,6 +8,7 @@ import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.AbsenRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.KaryawanRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.KelasRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.MahasiswaRepository;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.P5mRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.PelanggaranRepository;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.repository.PenggunaRepository;
 
@@ -23,6 +24,7 @@ public class MyApplication extends Application {
         KelasRepository.initialize(this);
         MahasiswaRepository.initialize(this);
         AbsenRepository.initialize(this);
+        P5mRepository.initialize(this);
 
     }
 }

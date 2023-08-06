@@ -46,41 +46,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_2" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/searchBoxCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveP5m"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="@color/blue_polman"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_mahasiswa_search"
+        style="@style/MyDenseOutlined"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/search"
+        app:endIconDrawable="@drawable/ic_baseline_search_24"
+        app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/btnSaveP5m">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchBox"
-            android:layout_width="345dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_margin="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectangle_9"
-            app:queryHint="Cari Siswa" />
-    </androidx.cardview.widget.CardView>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_schedule_search"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView1"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="601dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        app:cardElevation="15dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBoxCard"
-        app:layout_constraintVertical_bias="0.295">
+        app:layout_constraintTop_toBottomOf="@+id/til_mahasiswa_search"
+        app:layout_constraintVertical_bias="0.195">
+
+        <include
+            android:id="@+id/layout_empty_data"
+            layout="@layout/layout_empty_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/til_pengguna_search"
+            tools:layout_editor_absoluteX="-30dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

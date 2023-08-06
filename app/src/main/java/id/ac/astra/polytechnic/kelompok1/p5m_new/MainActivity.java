@@ -20,6 +20,7 @@ import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.DashboardFragment;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.DashboardMahasiswaFragment;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.HistoryAbsenFragment;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.MahasiswaFormFragment;
+import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.MahasiswaFormFragmentCoba;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.MahasiswaListFragment;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.fragment.ProfileMahasiswaFragment;
 
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     MahasiswaListFragment mahasiswaListFragment = new MahasiswaListFragment();
     DashboardFragment dashboardFragment = new DashboardFragment();
     DashboardMahasiswaFragment dashboardMahasiswaFragment = new DashboardMahasiswaFragment();
-    MahasiswaFormFragment mahasiswaFormFragment = new MahasiswaFormFragment();
+    //MahasiswaFormFragment mahasiswaFormFragment = new MahasiswaFormFragment();
+    MahasiswaFormFragmentCoba mahasiswaFormFragment = new MahasiswaFormFragmentCoba();
     HistoryAbsenFragment historyAbsenFragment = new HistoryAbsenFragment();
     ProfileMahasiswaFragment profileMahasiswaFragment = new ProfileMahasiswaFragment();
     FloatingActionButton mFloatingActionButton;

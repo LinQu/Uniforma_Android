@@ -205,7 +205,12 @@ public class HistoryAbsenFragment extends Fragment {
 
         public void bind(Object[] listAbsen){
             mTanggal.setText(listAbsen[1].toString());
-            mJamMasuk.setText(listAbsen[2].toString());
+            if (listAbsen[2] != null){
+                mJamMasuk.setText(listAbsen[2].toString());
+            }else {
+                mJamMasuk.setText("-");
+            }
+           // mJamMasuk.setText(listAbsen[2].toString());
             if (listAbsen[3] != null){
                 mJamKeluar.setText(listAbsen[3].toString());
             }else {

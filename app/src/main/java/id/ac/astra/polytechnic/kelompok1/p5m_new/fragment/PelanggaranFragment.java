@@ -329,7 +329,7 @@ public class PelanggaranFragment extends Fragment {
 //            mGlobalPengguna.setNama(nama);
 //            mGlobalPengguna.setKelas(kelas);
 //            mGlobalPengguna.setRole(role);
-            Pelanggaran pelanggaran = new Pelanggaran(null,nama,jam,1);
+            Pelanggaran pelanggaran = new Pelanggaran(null,nama,jam,false);
             ProgressDialog progressDialog = ProgressDialog.show(requireContext(), "Pelanggaran", "Saving Pelanggaran ...");
             mPelanggaranListViewModel.savePelanggaran(pelanggaran).observe(getViewLifecycleOwner(),pelanggaranResponse -> {
                 if (pelanggaranResponse.getStatus() == 200){
