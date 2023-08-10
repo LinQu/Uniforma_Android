@@ -10,9 +10,9 @@ import id.ac.astra.polytechnic.kelompok1.p5m_new.service.PelanggaranService;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.service.PenggunaService;
 
 public class ApiUtils {
-    public static final String BASE_URL_API = "http://192.168.62.201:8080/";
+    //public static final String BASE_URL_API = "http://192.168.170.201:8080/";
 //    //public static final String BASE_URL_API = "http://192.168.166.223:8080/";
-    //public static final String BASE_URL_API = "http://10.8.0.200:8080/";
+    public static final String BASE_URL_API = "http://10.8.0.200:8080/";
 
     private ApiUtils() {
     }

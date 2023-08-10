@@ -50,4 +50,6 @@ dependencies {
     //implementation 'com.github.gastricspark:scrolldatepicker:0.0.1'
     //GLide
     implementation 'com.github.bumptech.glide:glide:4.14.2'
+    //SweetAlert
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 }

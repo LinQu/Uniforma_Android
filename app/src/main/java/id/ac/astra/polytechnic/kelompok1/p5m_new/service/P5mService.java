@@ -18,4 +18,7 @@ public interface P5mService {
 
     @GET("/{nim}/findPelanggaranOccurrencesByNim")
     Call<List<Object[]>> findPelanggaranOccurrencesByNim(@Path("nim") String NIM,@Query("year") int tahun, @Query("month") int bulan);
+
+    @GET("/top3NimAndTotalJamMinus")
+    Call<List<Object[]>> top3NimAndTotalJamMinus(@Query("kelas")String kelas);
 }

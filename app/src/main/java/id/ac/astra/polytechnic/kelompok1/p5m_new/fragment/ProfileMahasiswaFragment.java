@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,9 +40,12 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.R;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.KehadiranPerBulanDTO;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.AbsenListViewModel;
@@ -52,12 +57,14 @@ public class ProfileMahasiswaFragment extends Fragment {
     private P5mListViewModel mP5mListViewModel;
     SharedPreferences preferences;
     ImageView ivProfile;
-    TextView tvNama,tvNIM;
+    TextView tvNama,tvNIM,tvNamaBulan;
     String nim;
     String nama;
     String urlPhoto;
     LineChart lineChartAbsen;
     BarChart lineChartPelanggaran;
+    Button mPrevButton,mNextButton;
+    int currentYear,currentMonth;
     List<KehadiranPerBulanDTO> mListKehadiranPerBulanDTO;
 
     public ProfileMahasiswaFragment() {
@@ -76,17 +83,68 @@ public class ProfileMahasiswaFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile_mahasiswa, container, false);
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Adding 1 because Calendar.MONTH is 0-based
+        currentMonth = month;
+        currentYear = year;
         preferences = getActivity().getSharedPreferences("user_pref", Context.MODE_PRIVATE);
         nim = preferences.getString("nim", "");
         nama = preferences.getString("nama", "");
         urlPhoto = preferences.getString("urlPhoto", "");
+        Bundle dataBundle = getArguments();
+        if (dataBundle != null) {
+           nim = dataBundle.getString("nim", "");
+           nama = dataBundle.getString("nama", "");
+           urlPhoto = dataBundle.getString("url_photo", "");
+            // Gunakan data yang diterima di sini
+        }
+
         lineChartAbsen = v.findViewById(R.id.lineChartAbsen);
         lineChartPelanggaran = v.findViewById(R.id.linechartPelanggaran);
-                ivProfile = v.findViewById(R.id.imgProfileMhs);
+        ivProfile = v.findViewById(R.id.imgProfileMhs);
         tvNama = v.findViewById(R.id.tv_dashboard_name);
         tvNIM = v.findViewById(R.id.tv_profile_nim);
         tvNIM.setText(nim);
         tvNama.setText(nama);
+        tvNamaBulan = v.findViewById(R.id.tvNamaBulan);
+        tvNamaBulan.setText(getMonthNameIndonesia(currentMonth));
+        mPrevButton = v.findViewById(R.id.prevButton);
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPrevNextMont(currentMonth,false);
+                mP5mListViewModel.findPelanggaranOccurrencesByNim(nim,currentYear,currentMonth).observe(getViewLifecycleOwner(), new Observer<List<Object[]>>() {
+                    @Override
+                    public void onChanged(List<Object[]> objects) {
+                        setupLineChartPelanggaran(objects);
+
+                    }
+                });
+                tvNamaBulan.setText(getMonthNameIndonesia(currentMonth) + "-" + currentYear);
+            }
+        });
+        mNextButton = v.findViewById(R.id.nextButton);
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPrevNextMont(currentMonth,true);
+                mP5mListViewModel.findPelanggaranOccurrencesByNim(nim,currentYear,currentMonth).observe(getViewLifecycleOwner(), new Observer<List<Object[]>>() {
+                    @Override
+                    public void onChanged(List<Object[]> objects) {
+                        setupLineChartPelanggaran(objects);
+
+                    }
+                });
+                tvNamaBulan.setText(getMonthNameIndonesia(currentMonth) + "-" + currentYear);
+
+            }
+        });
         Glide.with(this)
                 .load("https://sia.polytechnic.astra.ac.id/Files/"+urlPhoto)
                 .transform(new CenterCrop(),new RoundedCorners(190))
@@ -100,12 +158,14 @@ public class ProfileMahasiswaFragment extends Fragment {
                 mListKehadiranPerBulanDTO = kehadiranPerBulanDTOS;
                 Log.d(TAG, "onChanged: "+mListKehadiranPerBulanDTO);
                 setupLineChart(mListKehadiranPerBulanDTO);
+
             }
         });
-        mP5mListViewModel.findPelanggaranOccurrencesByNim(nim,2023,7).observe(getViewLifecycleOwner(), new Observer<List<Object[]>>() {
+        mP5mListViewModel.findPelanggaranOccurrencesByNim(nim,currentYear,currentMonth).observe(getViewLifecycleOwner(), new Observer<List<Object[]>>() {
             @Override
             public void onChanged(List<Object[]> objects) {
                 setupLineChartPelanggaran(objects);
+                pDialog.dismissWithAnimation();
             }
         });
         return v;
@@ -115,7 +175,7 @@ public class ProfileMahasiswaFragment extends Fragment {
         ArrayList<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             // Convert Double to float using the floatValue() method
-            float value = ((Double) data.get(i)[2]).floatValue();
+            float value = ((Double) data.get(i)[3]).floatValue();
             entries.add(new BarEntry(i, value));
         }
 
@@ -215,5 +275,62 @@ public class ProfileMahasiswaFragment extends Fragment {
             labels.add(dataItem.getBulan());
         }
         return labels;
+    }
+
+    public static Calendar getNextOrPrevMonthYear(int currentMonth, boolean next, boolean year) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, currentMonth - 1); // Adjusting to 0-based index
+
+        if (!next) {
+            currentMonth--;
+        }else{
+            currentMonth++;
+        }
+
+        if (year) {
+            calendar.add(Calendar.YEAR, currentMonth);
+        } else {
+            calendar.add(Calendar.MONTH, currentMonth);
+
+            // Check if month overflows to next/previous year
+            int newMonth = calendar.get(Calendar.MONTH);
+            int newYear = calendar.get(Calendar.YEAR);
+
+            if (newMonth < 0) {
+                newMonth = Calendar.DECEMBER;
+                newYear--;
+                calendar.set(Calendar.YEAR, newYear);
+            } else if (newMonth > Calendar.DECEMBER) {
+                newMonth = Calendar.JANUARY;
+                newYear++;
+                calendar.set(Calendar.YEAR, newYear);
+            }
+            calendar.set(Calendar.MONTH, newMonth);
+        }
+
+        return calendar;
+    }
+
+    public void getPrevNextMont(int curent,boolean next){
+        if(next){
+            if(curent==12){
+                currentYear++;
+                currentMonth = 1;
+            }else{
+                currentMonth++;
+            }
+        }else{
+            if(curent==1){
+                currentYear--;
+                currentMonth = 12;
+            }else{
+                currentMonth--;
+            }
+        }
+    }
+
+    public static String getMonthNameIndonesia(int monthNumber) {
+        String[] indonesianMonths = new DateFormatSymbols().getMonths();
+        return indonesianMonths[monthNumber - 1];
     }
 }

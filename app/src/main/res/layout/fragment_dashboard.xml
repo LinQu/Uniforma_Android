@@ -237,7 +237,7 @@
 
             <TextView
                 android:id="@+id/hari"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
@@ -295,7 +295,7 @@
 
             <TextView
                 android:id="@+id/hariTelat"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
@@ -354,13 +354,13 @@
 
             <TextView
                 android:id="@+id/tidakhadir"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="29dp"
-                android:layout_marginRight="36dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginBottom="14dp"
                 android:gravity="center_vertical"
                 android:text="3 Hari"
@@ -381,4 +381,93 @@
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardViewjammin"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#ffffff"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rekap_absen">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <TextView
+                android:id="@+id/jam_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_extrabold"
+                android:gravity="center|center_vertical"
+                android:text="Kehadiran"
+                android:textColor="@color/blue_polman"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ket"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Presentase Kehadiran"
+                android:textColor="#929292"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jam_minus" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvKehadiran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ket" />
+
+
+            <TextView
+                android:id="@+id/ket1"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Last 3 Months"
+                android:textColor="#828282"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.069"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvKehadiran" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

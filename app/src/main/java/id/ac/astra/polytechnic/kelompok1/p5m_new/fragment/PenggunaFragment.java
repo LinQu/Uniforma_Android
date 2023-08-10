@@ -163,7 +163,7 @@ public class PenggunaFragment extends Fragment {
 //            mGlobalPengguna.setNama(nama);
 //            mGlobalPengguna.setKelas(kelas);
 //            mGlobalPengguna.setRole(role);
-            Pengguna pengguna = new Pengguna(null,nama,role,kelas,1);
+            Pengguna pengguna = new Pengguna(0,nama,role,kelas,1);
             ProgressDialog progressDialog = ProgressDialog.show(requireContext(), "Pengguna", "Saving Pengguna ...");
             mPengunaListViewModel.savePengguna(pengguna).observe(getViewLifecycleOwner(),penggunaResponse -> {
                 if (penggunaResponse.getStatus() == 200){

@@ -36,4 +36,8 @@ public class AbsenListViewModel extends ViewModel {
     public LiveData<List<Object[]>> getHistoryListMonthByNim(String nim){
         return mAbsenRepository.getHistoryListMonthByNim(nim);
     }
+
+    public LiveData<Object[]> calculateAbsen(String nim, int tahun, int bulan){
+        return mAbsenRepository.calculateAbsen(nim, tahun, bulan);
+    }
 }

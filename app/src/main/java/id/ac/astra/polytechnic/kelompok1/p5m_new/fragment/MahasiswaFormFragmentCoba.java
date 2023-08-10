@@ -1,8 +1,10 @@
 package id.ac.astra.polytechnic.kelompok1.p5m_new.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.R;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.DetailP5m;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.model.Mahasiswa;
@@ -105,7 +108,7 @@ public class MahasiswaFormFragmentCoba extends Fragment {
         mMahasiswSearchLayout.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                filter(s.toString());
+//                filter(s.toString());
             }
 
             @Override
@@ -115,7 +118,8 @@ public class MahasiswaFormFragmentCoba extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                filter(s.toString());
+
+//                filter(s.toString());
             }
         });
         mLayoutEmpty = view.findViewById(R.id.layout_empty_data);
@@ -123,8 +127,10 @@ public class MahasiswaFormFragmentCoba extends Fragment {
         mBtnSsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new MahasiswaFormFragmentCoba()).commit();
+
                 hitungP5m(selectedCheckBoxIds);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new MahasiswaFormFragmentCoba()).commit();
+
             }
         });
         kelas = (preferences.getString("kelas", ""));
@@ -135,6 +141,11 @@ public class MahasiswaFormFragmentCoba extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
         mMahasiswaListViewModel.getMahasiswaByKelas(kelas).observe(getViewLifecycleOwner(), new Observer<List<Mahasiswa>>() {
             @Override
             public void onChanged(List<Mahasiswa> mahasiswasi) {
@@ -162,6 +173,7 @@ public class MahasiswaFormFragmentCoba extends Fragment {
 
                         mMahasiswaFrag = mahasiswasi;
                         filter("");
+                        pDialog.dismissWithAnimation();
                     }
                 });
             }
@@ -379,6 +391,11 @@ public class MahasiswaFormFragmentCoba extends Fragment {
 
     @SuppressLint("LongLogTag")
     public void hitungP5m(List<Integer> selectedCheckBoxIds){
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
         Map<String, List<Integer>> resultMap = new HashMap<>();
 
         for (int id : selectedCheckBoxIds) {
@@ -394,13 +411,16 @@ public class MahasiswaFormFragmentCoba extends Fragment {
             }
         }
 
-    mP5mListViewModel.postP5m(resultMap,kelas).observe(getViewLifecycleOwner(), new Observer<ListDetailP5mResponse>() {
+    mP5mListViewModel.postP5m(resultMap,kelas).observe(getViewLifecycleOwner(), new Observer<List<DetailP5m>>() {
         @Override
-        public void onChanged(ListDetailP5mResponse p5mResponse) {
-            if (p5mResponse.getStatus() == 200 ) {
-                // Reload current fragment
-                Log.d(TAG, p5mResponse.getMessage());
+        public void onChanged(List<DetailP5m> detailP5ms) {
+
+            if (detailP5ms != null){
+                Log.d("TAG", "onChanged: " + detailP5ms.size());
+
             }
+            Toast.makeText(getActivity(), "Done Bang", Toast.LENGTH_SHORT).show();
+            pDialog.dismissWithAnimation();
         }
     });
 

@@ -149,4 +149,25 @@ public class AbsenRepository {
         });
         return listHistoryMonth;
     }
+
+    public LiveData<Object[]> calculateAbsen(String NIM, int Year, int Month){
+        final MutableLiveData<Object[]> listAbsen = new MutableLiveData<>();
+        Call<Object[]> call = mAbsenService.calculateAbsen(NIM,Year,Month);
+        call.enqueue(new Callback<Object[]>() {
+            @Override
+            public void onResponse(Call<Object[]> call, Response<Object[]> response) {
+                Object[] listAbsen1 = response.body();
+                Log.d(TAG,"onResponse Absen List View Model List Bulan " + listAbsen1);
+                if(listAbsen1 != null){
+                    listAbsen.setValue(listAbsen1);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object[]> call, Throwable t) {
+                Log.e(TAG,"onFailure Absen List View Model Bulan" + t.getMessage());
+            }
+        });
+        return listAbsen;
+    }
 }

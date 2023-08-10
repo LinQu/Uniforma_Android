@@ -2,6 +2,7 @@ package id.ac.astra.polytechnic.kelompok1.p5m_new.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormatSymbols;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,6 +32,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.R;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.helper.BulanNavigator;
 import id.ac.astra.polytechnic.kelompok1.p5m_new.viewmodel.AbsenListViewModel;
@@ -47,6 +50,8 @@ public class HistoryAbsenFragment extends Fragment {
     private Button mPrevButton;
     private Button mNextButton;
     private String mPersentase;
+    private TextView mTextViewHadir;
+    private TextView mTextViewTidakHadir;
     private String mBulan;
     private int currentYear;
     private int currentMonth;
@@ -91,6 +96,11 @@ public class HistoryAbsenFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_history,container,false);
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Adding 1 because Calendar.MONTH is 0-based
+        currentMonth = month;
+        currentYear = year;
         preferences = getActivity().getSharedPreferences("user_pref", Context.MODE_PRIVATE);
          NIM = preferences.getString("nim", "");
         mAbsenRecyclerView = v.findViewById(R.id.recycler_history);
@@ -100,9 +110,11 @@ public class HistoryAbsenFragment extends Fragment {
         mTextViewProgress = v.findViewById(R.id.text_view_progress);
         mLayoutEmpty = v.findViewById(R.id.layout_empty_data);
         mMonthYearTV = v.findViewById(R.id.monthYearTV);
-        mMonthYearTV.setText("Juni 2023");
+        mMonthYearTV.setText(getMonthName(currentMonth) + " " + currentYear);
         currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
         currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        mTextViewHadir = v.findViewById(R.id.tvHadir);
+        mTextViewTidakHadir = v.findViewById(R.id.tvTidakHadir);
         mPrevButton = v.findViewById(R.id.prevButton);
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +148,11 @@ public class HistoryAbsenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
         mAbsenListViewModel.getAbsenByNimAndMonth(NIM,currentMonth,currentYear).observe(getViewLifecycleOwner(), listHistoryAbsen -> {
                 updateUI(listHistoryAbsen);
         });
@@ -169,17 +185,36 @@ public class HistoryAbsenFragment extends Fragment {
                         dataInt.add(i);
                     }
                     bulanNavigator = new BulanNavigator(dataInt);
-                    updateMonthYearText();
+                    pDialog.dismissWithAnimation();
                 }
             }
         });
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Adding 1 because Calendar.MONTH is 0-based
+        currentMonth = month;
+        currentYear = year;
+        updateMonthYearText();
+
     }
 
     private void updateMonthYearText() {
         // Mengatur teks pada textViewMonthYear dengan nilai bulan dan tahun yang baru
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
         String monthYearText = getMonthName(currentMonth) + " " + currentYear;
         mMonthYearTV.setText(monthYearText);
-
+        mAbsenListViewModel.calculateAbsen(NIM,currentYear,currentMonth).observe(getViewLifecycleOwner(), new Observer<Object[]>() {
+            @Override
+            public void onChanged(Object[] objects) {
+                mTextViewHadir.setText("Hadir : "+String.valueOf(objects[0]).substring(0,String.valueOf(objects[0]).length()-2));
+                mTextViewTidakHadir.setText("Tidak : "+String.valueOf(objects[2]).substring(0,String.valueOf(objects[0]).length()-2));
+                pDialog.dismissWithAnimation();
+            }
+        });
         // Di sini Anda juga dapat memanggil fungsi untuk menampilkan data sesuai bulan dan tahun yang baru.
     }
 
@@ -280,5 +315,10 @@ public class HistoryAbsenFragment extends Fragment {
             return dayOfWeek.getDisplayName(TextStyle.FULL, locale);
         }
         return "";
+    }
+
+    public static String getMonthNameIndonesia(int monthNumber) {
+        String[] indonesianMonths = new DateFormatSymbols().getMonths();
+        return indonesianMonths[monthNumber - 1];
     }
 }

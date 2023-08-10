@@ -24,4 +24,7 @@ public interface AbsenService {
 
     @GET("{nim}/listHistoryBulan")
     Call<List<Object[]>> getHistoryListMonthByNim(@Path("nim") String nim);
+
+    @GET("{nim}/calculateAbsen")
+    Call<Object[]> calculateAbsen(@Path("nim") String nim, @Query("year") int tahun, @Query("month") int bulan);
 }

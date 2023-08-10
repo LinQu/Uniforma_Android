@@ -136,16 +136,16 @@
 
             <TextView
                 android:id="@+id/hari"
-                android:layout_width="34dp"
+                android:layout_width="72dp"
                 android:layout_height="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="17dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginRight="36dp"
                 android:layout_marginBottom="14dp"
                 android:gravity="center_vertical"
-                android:text="3 Hari"
+                android:text="3 Mahasiswa"
                 android:textColor="#39C62D"
                 android:textSize="12sp" />
 
@@ -194,16 +194,16 @@
 
             <TextView
                 android:id="@+id/hariTelat"
-                android:layout_width="34dp"
+                android:layout_width="72dp"
                 android:layout_height="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="17dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginRight="36dp"
                 android:layout_marginBottom="14dp"
                 android:gravity="center_vertical"
-                android:text="3 Hari"
+                android:text="3 Mahasiswa"
                 android:textColor="#E2AB1E"
                 android:textSize="12sp" />
 
@@ -242,26 +242,26 @@
                 android:id="@+id/textTidakHadir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="31dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="31dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Hadir"
+                android:text="Tidak Hadir"
                 android:textColor="#A6000000"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tidakhadir"
-                android:layout_width="34dp"
+                android:layout_width="72dp"
                 android:layout_height="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="17dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginRight="36dp"
                 android:layout_marginBottom="14dp"
                 android:gravity="center_vertical"
-                android:text="3 Hari"
+                android:text="3 Mahasiswa"
                 android:textColor="#F17676"
                 android:textSize="12sp" />
 
@@ -337,217 +337,227 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/jam_minus" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView4"
-                android:layout_width="266dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/blue_polman"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="8dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTop3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/keterangan">
+                app:layout_constraintTop_toBottomOf="@+id/keterangan" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+            <!-- <com.google.android.material.card.MaterialCardView
+                 android:id="@+id/materialCardView4"
+                 android:layout_width="266dp"
+                 android:layout_height="48dp"
+                 android:layout_marginTop="8dp"
+                 android:backgroundTint="@color/blue_polman"
+                 app:cardCornerRadius="5dp"
+                 app:cardElevation="8dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/keterangan">
 
-                    <TextView
-                        android:id="@+id/nama_jammin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="16dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Pranspaska Yudha"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                 <androidx.constraintlayout.widget.ConstraintLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="52dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="16dp"
-                        android:backgroundTint="#ffffff"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.981"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                     <TextView
+                         android:id="@+id/nama_jammin"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentLeft="true"
+                         android:layout_alignParentTop="true"
+                         android:layout_marginLeft="16dp"
+                         android:fontFamily="@font/poppins_medium"
+                         android:text="Pranspaska Yudha"
+                         android:textColor="#ffffff"
+                         android:textSize="14sp"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.0"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/jammin1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginRight="3dp"
-                            android:layout_marginBottom="6dp"
+                     <com.google.android.material.card.MaterialCardView
+                         android:layout_width="52dp"
+                         android:layout_height="30dp"
+                         android:layout_alignParentTop="true"
+                         android:layout_alignParentRight="true"
+                         android:layout_marginRight="16dp"
+                         android:backgroundTint="#ffffff"
+                         app:cardCornerRadius="5dp"
+                         app:cardElevation="8dp"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.981"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent">
 
-                            android:fontFamily="@font/poppins_extrabold"
-                            android:text="-20 Jam"
-                            android:textColor="@color/blue_polman"
-                            android:textSize="10sp" />
+                         <TextView
+                             android:id="@+id/jammin1"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="3dp"
+                             android:layout_marginTop="6dp"
+                             android:layout_marginRight="3dp"
+                             android:layout_marginBottom="6dp"
 
-                    </com.google.android.material.card.MaterialCardView>
+                             android:fontFamily="@font/poppins_extrabold"
+                             android:text="-20 Jam"
+                             android:textColor="@color/blue_polman"
+                             android:textSize="10sp" />
 
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView5"
-                android:layout_width="266dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/blue_polman"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView4">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nama_jammin1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="16dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Pranspaska Yudha"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="52dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="16dp"
-                        android:backgroundTint="#ffffff"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.981"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/jammin2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginRight="3dp"
-                            android:layout_marginBottom="6dp"
-
-                            android:fontFamily="@font/poppins_extrabold"
-                            android:text="-20 Jam"
-                            android:textColor="@color/blue_polman"
-                            android:textSize="10sp" />
-
-                    </com.google.android.material.card.MaterialCardView>
+                     </com.google.android.material.card.MaterialCardView>
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </com.google.android.material.card.MaterialCardView>
+             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView6"
-                android:layout_width="266dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/blue_polman"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView5">
+             <com.google.android.material.card.MaterialCardView
+                 android:id="@+id/materialCardView5"
+                 android:layout_width="266dp"
+                 android:layout_height="48dp"
+                 android:layout_marginTop="8dp"
+                 android:backgroundTint="@color/blue_polman"
+                 app:cardCornerRadius="5dp"
+                 app:cardElevation="8dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/materialCardView4">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                 <androidx.constraintlayout.widget.ConstraintLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/nama_jammin2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="16dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Pranspaska Yudha"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                     <TextView
+                         android:id="@+id/nama_jammin1"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentLeft="true"
+                         android:layout_alignParentTop="true"
+                         android:layout_marginLeft="16dp"
+                         android:fontFamily="@font/poppins_medium"
+                         android:text="Pranspaska Yudha"
+                         android:textColor="#ffffff"
+                         android:textSize="14sp"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.0"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="52dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="16dp"
-                        android:backgroundTint="#ffffff"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.981"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                     <com.google.android.material.card.MaterialCardView
+                         android:layout_width="52dp"
+                         android:layout_height="30dp"
+                         android:layout_alignParentTop="true"
+                         android:layout_alignParentRight="true"
+                         android:layout_marginRight="16dp"
+                         android:backgroundTint="#ffffff"
+                         app:cardCornerRadius="5dp"
+                         app:cardElevation="8dp"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.981"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/jammin3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginRight="3dp"
-                            android:layout_marginBottom="6dp"
-                            android:fontFamily="@font/poppins_extrabold"
-                            android:text="-20 Jam"
-                            android:textColor="@color/blue_polman"
-                            android:textSize="10sp" />
+                         <TextView
+                             android:id="@+id/jammin2"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="3dp"
+                             android:layout_marginTop="6dp"
+                             android:layout_marginRight="3dp"
+                             android:layout_marginBottom="6dp"
 
-                    </com.google.android.material.card.MaterialCardView>
+                             android:fontFamily="@font/poppins_extrabold"
+                             android:text="-20 Jam"
+                             android:textColor="@color/blue_polman"
+                             android:textSize="10sp" />
 
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                     </com.google.android.material.card.MaterialCardView>
 
 
-            </com.google.android.material.card.MaterialCardView>
+                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+             </com.google.android.material.card.MaterialCardView>
+
+             <com.google.android.material.card.MaterialCardView
+                 android:id="@+id/materialCardView6"
+                 android:layout_width="266dp"
+                 android:layout_height="48dp"
+                 android:layout_marginTop="8dp"
+                 android:backgroundTint="@color/blue_polman"
+                 app:cardCornerRadius="5dp"
+                 app:cardElevation="8dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/materialCardView5">
+
+                 <androidx.constraintlayout.widget.ConstraintLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical">
+
+                     <TextView
+                         android:id="@+id/nama_jammin2"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentLeft="true"
+                         android:layout_alignParentTop="true"
+                         android:layout_marginLeft="16dp"
+                         android:fontFamily="@font/poppins_medium"
+                         android:text="Pranspaska Yudha"
+                         android:textColor="#ffffff"
+                         android:textSize="14sp"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.0"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent" />
+
+                     <com.google.android.material.card.MaterialCardView
+                         android:layout_width="52dp"
+                         android:layout_height="30dp"
+                         android:layout_alignParentTop="true"
+                         android:layout_alignParentRight="true"
+                         android:layout_marginRight="16dp"
+                         android:backgroundTint="#ffffff"
+                         app:cardCornerRadius="5dp"
+                         app:cardElevation="8dp"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.981"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent">
+
+                         <TextView
+                             android:id="@+id/jammin3"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="3dp"
+                             android:layout_marginTop="6dp"
+                             android:layout_marginRight="3dp"
+                             android:layout_marginBottom="6dp"
+                             android:fontFamily="@font/poppins_extrabold"
+                             android:text="-20 Jam"
+                             android:textColor="@color/blue_polman"
+                             android:textSize="10sp" />
+
+                     </com.google.android.material.card.MaterialCardView>
+
+
+                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+             </com.google.android.material.card.MaterialCardView>-->
 
 
             <TextView
@@ -564,7 +574,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView6" />
+                app:layout_constraintTop_toBottomOf="@+id/rvTop3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -583,19 +593,19 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPelanggaran"
-            android:padding="5dp"
             android:layout_width="140dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:padding="5dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.291"
             app:layout_constraintStart_toEndOf="@+id/cardPengguna"
-            app:layout_constraintTop_toBottomOf="@+id/lineratas">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -636,8 +646,9 @@
             android:id="@+id/cardPengguna"
             android:layout_width="140dp"
             android:layout_height="100dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

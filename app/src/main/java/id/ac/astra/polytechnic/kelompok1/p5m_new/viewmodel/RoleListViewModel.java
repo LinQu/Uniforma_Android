@@ -15,11 +15,11 @@ public class RoleListViewModel extends ViewModel {
 
         Role koordinatorKelas = new Role("Koordinator Kelas");
         Role koordinatorTataTertib = new Role("Koordinator Tata Tertib");
-        Role sekretarisProdi = new Role("Sekretaris Prodi");
+        //Role sekretarisProdi = new Role("Sekretaris Prodi");
 
         mRole.add(koordinatorKelas);
         mRole.add(koordinatorTataTertib);
-        mRole.add(sekretarisProdi);
+       // mRole.add(sekretarisProdi);
     }
 
     public List<Role> getRoleList() {
